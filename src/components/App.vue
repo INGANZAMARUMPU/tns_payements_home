@@ -1,20 +1,33 @@
 <template>
     <Page>
         <ActionBar title="Welcome to NativeScript-Vue!"/>
-        <GridLayout columns="*" rows="*">
-            <Label class="message" :text="msg" col="0" row="0"/>
-        </GridLayout>
+        <StackLayout>
+            <!-- <Navigator :defaultRoute="'/home'"/> -->
+            <StackLayout orientation="horizontal">
+                <Label class="message" text="Hello " />
+                <Label class="message" :text="msg" />
+            </StackLayout>
+            <Button text="Button" @tap="gotoPage2" />
+        </StackLayout>
     </Page>
 </template>
 
 <script >
+const page2 = require("./Page2");
   export default {
     data() {
       return {
-        msg: 'Hello World!'
+        msg: "Jonkur",
       }
+  },
+    methods: {
+        gotoPage2() {
+            prompt("Your name please!").
+                then(result => this.msg=result.text);
+            // this.$navigateTo(page2)
+        }
     }
-  };
+};
 </script>
 
 <style scoped>
@@ -22,7 +35,6 @@
         background-color: #53ba82;
         color: #ffffff;
     }
-
     .message {
         vertical-align: center;
         text-align: center;
